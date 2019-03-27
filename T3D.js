@@ -23,7 +23,8 @@ function repaint3D() {
     }
 }
 
-function changeTo3D() {//将游戏场地沿x轴拉伸45度
+function changeTo3D() {
+    //将游戏场地沿x轴拉伸45度
     is3D = true;
     chessBoard.style.width = "500px"
     chessBoard.style.height = "350px"
@@ -31,32 +32,34 @@ function changeTo3D() {//将游戏场地沿x轴拉伸45度
     chessBoard.style.transform = "skew(-45deg)";
     T3D_Y = 0.7;
     T3D_X = 1;
-    for (var i = 0 ; i < squareSet.length ; i ++) {//将地面纹理进行3D处理
+    for (var i = 0 ; i < squareSet.length ; i ++) {
+        //将地面纹理进行3D处理
         for (var j = 0 ; j < squareSet[i].length ; j ++) {
             squareSet[i][j].style.width = "20px";
             squareSet[i][j].style.height = "14px";
-            // squareSet[i][j].style.transform = "skew(-45deg)";
         }
     }
-    for (var i = 0 ; i < snake.length ; i ++) {//将蛇身变成球体
+    for (var i = 0 ; i < snake.length ; i ++) {
+        //将蛇身变成球体
         for (var j = 0 ; j < snake[i].snakeBody.length ; j ++) {
             snake[i].snakeBody[j].style.transition = "transform 2s";
             rendering3D(snake[i].snakeBody[j]);
         }
         snake[i].snakeBody[0].getElementsByClassName("circle")[0].getElementsByTagName("span")[0].style.transform = "rotateY(" + snake[i].nowToward.rotateY + "deg)";
     }
-    for (var i = 0 ; i < things.length ; i ++) {//将物体变成球体效果
+    for (var i = 0 ; i < things.length ; i ++) {
+        //将物体变成球体效果
         things[i].style.display = "block";
         things[i].style.transform = "skew(0deg)";
         things[i].style.transition = "transform 2s";
         things[i].style.transform = "skew(45deg)";
-        // things[i].getElementsByClassName("over_circle")[0].style.backgroundImage = "radial-gradient(circle at center, white, blueviolet)";
         things[i].getElementsByClassName("shadow")[0].style.display = "inline-block";
     }
     repaint();
 }
 
-function rendering3D(obj, color) {//在创建新的身体或者物体的时候，直接渲染为3D效果
+function rendering3D(obj, color) {
+    //在创建新的身体或者物体的时候，直接渲染为3D效果
     obj.style.transform = "skew(45deg)";
     obj.getElementsByClassName("over_circle")[0].style.backgroundImage = "radial-gradient(circle at center, white, " + color + ")";
     obj.getElementsByClassName("shadow")[0].style.display = "inline-block";
